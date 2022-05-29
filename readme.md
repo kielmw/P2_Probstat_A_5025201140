@@ -18,9 +18,17 @@ melakukan aktivitas 𝐴 sebanyak 70.
 
 a. Carilah Standar Deviasi dari data selisih pasangan pengamatan tabel
 diatas
+Standar deviasi didapat senilai 6.35959468
+<br> ![1_sd](https://user-images.githubusercontent.com/99122278/170871450-b72d7837-95d5-4190-ab43-585abeec725f.png) </br>
+
+c) karena nilai t lebih besar dari nilai kritis t dengan tingkat signifikasi 5%, maka dapat disimpulkan bahwa H0 ditolak dan H1 diterima, yaitu terdapat pengaruh signifikan secara statistika dalam hal kadar saturasi oksigen sebelum dans esuah melakuan aktivitas A
 
 b. carilah nilai t (p-value)
-
+mencari p-value
+<br>
+![1_ttest](https://user-images.githubusercontent.com/99122278/170870347-bfcffc93-4e81-42ab-8934-722c23088c1b.png)
+</br>
+ditemukan nilai p-valuenya adalah 6.003e-5 atau 0.00006003
 c. tentukanlah apakah terdapat pengaruh yang signifikan secara statistika
 dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan
 aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada
