@@ -76,12 +76,29 @@ didapatkanlah data berikut dari perusahaan saham tersebut.
 Dari data diatas berilah keputusan serta kesimpulan yang didapatkan dari hasil
 diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada
 rata-ratanya (α= 0.05)? Buatlah :
-A. H0 dan H1
-B. Hitung Sampel Statistik
-C. Lakukan Uji Statistik (df =2)
-D. Nilai Kritikal
-E. Keputusan
-F. Kesimpulan
+### A
+H0 dapat diketahui sebagai berikut,<br>
+![ab_ac](Images/3a1.png)<br>
+dan H1 dapat diketahui sebagai berikut,<br>
+![ab_ac](Images/3a2.png)
+
+### B
+Untuk menghitung sampel statistik, digunakan `tsum.test()`.<br>
+![ab_ac](Images/3b.png)
+
+### C
+Dilakukan penggunaan `plotDist()` dengan parameter `df` bernilai `2`. Sehingga didapatkan hasil sebagai berikut,<br>
+![ab_ac](Images/3c.png)
+
+### D
+Untuk nilai kritikal, dapat digunakan `qchisq()` dengan parameter `df` bernilai `2`.<br>
+![ab_ac](Images/3d.png)
+
+### E
+Aksinya adalah : `({a}_{a∈A})`, Kemungkinan konsekuensi : `({c}_{c∈C})` (tergantung pada keadaan dan tindakan), maka keputusan dapat dibuat dengan `t.test()`.
+
+### F
+Tidak terdapat perbedaan rata-rata jika ditinjau dari uji statistik, namun akan ada (tidak signifikan) jika dipengaruhi nilai kritikal.
 
 4. Seorang Peneliti sedang meneliti spesies dari kucing di ITS . Dalam penelitiannya
 ia mengumpulkan data tiga spesies kucing yaitu kucing oren, kucing hitam dan
@@ -91,19 +108,36 @@ diketahui dataset https://intip.in/datasetprobstat1
 H0 : Tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya
 sama
 Maka Kerjakan atau Carilah:
-A. Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1,grup
-2,grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan
-lihat apakah ada outlier utama dalam homogenitas varians.
-B. carilah atau periksalah Homogeneity of variances nya , Berapa nilai p yang
-didapatkan? , Apa hipotesis dan kesimpulan yang dapat diambil ?
-C. Untuk uji ANOVA (satu arah), buatlah model linier dengan Panjang versus
-Grup dan beri nama model tersebut model 1.
-D. Dari Hasil Poin C, Berapakah nilai-p ? , Apa yang dapat Anda simpulkan
-dari H0?
-E. Verifikasilah jawaban model 1 dengan Post-hoc test Tukey HSD, dari nilai p
-yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.
-F. Visualisasikan data dengan ggplot2
+### A
+```
+dataSet  <- read.table(url("https://rstatisticsandresearch.weebly.com/uploads/1/0/2/6/1026585/onewayanova.txt"))
+dim(dataSet)
+head(dataSet)
+attach(dataSet)
+dataSet$V1 <- as.factor(dataSet$V1)
+dataSet$V1 = factor(dataSet$V1,labels = c("Kucing Oren", "Kucing Hitam", "Kucing Putih", "Kucing Oren"))
+class(dataSet$V1)
+group1 <- subset(dataSet, V1 == "Kucing Oren")
+group2 <- subset(dataSet, V1 == "Kucing Hitam")
+group3 <- subset(dataSet, V1 == "Kucing Putih")
+```
+Sebelum membagi jenis spesies menjadi 3 grup, data dari url di atas dibaca dengan `read.table(url())`. Kemudian, `dataSet` diubah menjadi grup dan diperiksa apakah grup itu menyimpan nilai. Kemudian, tiap nilai akan dibagi menjadi 3 dengan menggunakan `subset()`.
 
+### B
+Dengan menggunakan `bartlett.test()` untuk mencari Homogeneity of variances, didapatkan nilai p-value = 0.8054. Sehingga dapat ditarik kesimpulan bahwa Bartlett's K-squared memiliki nilai sebesar 0.43292 dan df bernilai 2.
+
+### C
+Untuk menggambar model linier, digunakan `qqnorm()` dan `qqnorm` `qqline()`.<br>
+![ab_ac](Images/4c.png)
+
+### D
+Nilai p-value = 0.8054.
+
+### E
+Dapat dilakukan dengan menggunakan perintah `lm()`, diikuti dengan `anova()`, dan terakhir menggunakan `TukeyHSD(aov())`.
+
+### F
+Untuk melakukan visualisasi, dapat digunakan perintah `library()` diikuti dengan `ggplot()`.
 5. Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk
 mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca
 pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan
